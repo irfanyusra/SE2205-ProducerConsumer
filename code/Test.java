@@ -42,7 +42,7 @@ public class Test{
     sT = qS.runSimulation();
     
     System.out.println("Simulated for 100000s with Arrival Rate of 5 packets/sec and Service Rate of 10 packets/sec:");
-    System.out.println("Sojourn time is "+sT+" seconds");
+    System.out.println("	 time is "+sT+" seconds");
     System.out.println();
     
     qS = new QueueSimulator(7,0.1,100000);
