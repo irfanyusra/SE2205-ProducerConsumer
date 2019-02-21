@@ -53,6 +53,8 @@ public class QueueSimulator {
 	}
 
 	public double runSimulation() {
+		getRandTime
+		 System.out.println();
 
 		while (currTime < totalSimTime) {
 			if ((buffer.isEmpty()) || (timeForNextArrival < timeForNextDeparture)) {
