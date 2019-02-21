@@ -39,7 +39,13 @@ public class QueueSimulator {
 		double sum = 0;
 		double size = eventQueue.size();
 		for (int i = 0; i < size; i++) {
-			sum += eventQueue.dequeue().getDepartureTime();
+			Data a = eventQueue.dequeue();
+		    System.out.println(" DEP "+a.getDepartureTime());
+		    System.out.println(" ARR "+a.getArrivalTime());
+		    System.out.println();
+
+			sum += (a.getDepartureTime() - a.getArrivalTime());
+					
 		}
 		return (sum/size);
 		
@@ -47,7 +53,7 @@ public class QueueSimulator {
 	}
 
 	public double runSimulation() {
-		
+
 		while (currTime < totalSimTime) {
 			if ((buffer.isEmpty()) || (timeForNextArrival < timeForNextDeparture)) {
 				currTime += timeForNextArrival;
@@ -59,13 +65,13 @@ public class QueueSimulator {
 
 			if (e == Event.ARRIVAL) {
 				Data d = new Data();
-				d.setArrivalTime(timeForNextArrival);
+				d.setArrivalTime(currTime);
 				buffer.enqueue(d);
 				timeForNextArrival = getRandTime(arrivalRate); 
 
 			} else if (e == Event.DEPARTURE) {
 				
-				buffer.first().setDepartureTime(timeForNextDeparture);
+				buffer.first().setDepartureTime(currTime);
 				eventQueue.enqueue(buffer.dequeue());
 				timeForNextDeparture = serviceTime + timeForNextArrival;
 			}
