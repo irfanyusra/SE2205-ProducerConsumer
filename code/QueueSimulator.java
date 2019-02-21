@@ -1,6 +1,7 @@
 import java.lang.*;
 
 public class QueueSimulator{
+	/*
   public enum Event { ARRIVAL, DEPARTURE };
   private double currTime;
   private double arrivalRate;
@@ -28,6 +29,7 @@ public class QueueSimulator{
   
   public double runSimulation(){
   }
+  */
 }
 
 

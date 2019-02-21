@@ -28,7 +28,7 @@ public class Test{
       System.out.println("Arrival Time: "+d.getArrivalTime()+", Departure Time: "+d.getDepartureTime());
     }
   }
-  
+  /*
   public static void p2(){
     QueueSimulator qS = new QueueSimulator(1,0.1,100000);
     double sT = qS.runSimulation();
@@ -66,7 +66,7 @@ public class Test{
     System.out.println("Sojourn time is "+sT+" seconds");
     System.out.println();
     
-  }
+  }*/
   
   public static void main(String[] args)throws Exception
   {
@@ -76,7 +76,7 @@ public class Test{
       p1();
     }
     else if(testPart==2){
-      p2();
+    //  p2();
     }
     else{
       System.out.println("Incorrect set of arguments");

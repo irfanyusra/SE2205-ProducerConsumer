@@ -7,7 +7,7 @@ public class SinglyLinkedList<E> {
 	private static class Node<E> {
 
 		private E elem;
-		private Node next;
+		private Node <E> next;
 
 		public Node(E e, Node<E> n) {
 			elem = e;
@@ -50,7 +50,7 @@ public class SinglyLinkedList<E> {
 	}
 
 	public void addFirst(E element) {
-		Node n = new Node(element, null);
+		Node <E> n = new Node<E>(element, null);
 		if (size == 0)
 			tail = n;
 		else
@@ -65,7 +65,7 @@ public class SinglyLinkedList<E> {
 			addFirst(element);
 
 		else {
-			Node n = new Node(element, null);
+			Node<E> n = new Node<E>(element, null);
 			tail.setNext(n);
 			tail = n;
 		}
@@ -82,5 +82,4 @@ public class SinglyLinkedList<E> {
 			return n;
 		}
 	}
-
 }
