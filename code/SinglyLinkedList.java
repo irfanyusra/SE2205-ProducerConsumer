@@ -2,7 +2,7 @@ public class SinglyLinkedList<E> {
 
 	private Node<E> head;
 	private Node<E> tail;
-	private int size = 0;
+	private int size;
 	
 	private static class Node<E> {
 
@@ -55,21 +55,23 @@ public class SinglyLinkedList<E> {
 			tail = n;
 		else
 			n.setNext(head);
-
 		head = n;
 		size++;
 	}
 
 	public void addLast(E element) {
-		if (size == 0)
+		if (size == 0) {
 			addFirst(element);
+		
+			}
 
 		else {
 			Node<E> n = new Node<E>(element, null);
 			tail.setNext(n);
 			tail = n;
+			size++;
 		}
-		size++;
+		
 	}
 
 	public E removeFirst() {
