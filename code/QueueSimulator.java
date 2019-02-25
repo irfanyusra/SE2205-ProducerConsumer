@@ -21,7 +21,7 @@ public class QueueSimulator {
 		double num, time1, max = 1, min = 0, randNUM;
 		randNUM = Math.random();
 		time1 = (-1 / arrivalRate) * (Math.log(1 - randNUM));
-		// System.out.println(time1);
+	//	 System.out.println("TIM " + time1);
 		return time1;
 	}
 
@@ -32,7 +32,7 @@ public class QueueSimulator {
 		totalSimTime = simT;
 		timeForNextArrival = getRandTime(arrivalRate);
 		timeForNextDeparture = serviceTime + timeForNextArrival;
-
+		e = Event.ARRIVAL;
 	}
 
 	public double calcAverageWaitingTime() {
@@ -40,44 +40,57 @@ public class QueueSimulator {
 		double size = eventQueue.size();
 		for (int i = 0; i < size; i++) {
 			Data a = eventQueue.dequeue();
-		    System.out.println(" DEP "+a.getDepartureTime());
-		    System.out.println(" ARR "+a.getArrivalTime());
-		    System.out.println();
-
-			sum += (a.getDepartureTime() - a.getArrivalTime());
-					
+			sum += (a.getDepartureTime() - a.getArrivalTime()); //
 		}
-		return (sum/size);
-		
+		return (sum / size);
 
 	}
 
 	public double runSimulation() {
+		currTime = timeForNextArrival;
 		
-
 		while (currTime < totalSimTime) {
-			if ((buffer.isEmpty()) || (timeForNextArrival < timeForNextDeparture)) {
-				currTime += timeForNextArrival;
-				e = Event.ARRIVAL;
-			} else  {
-				currTime += timeForNextDeparture;
-				e = Event.DEPARTURE;
-			}
-
+			
 			if (e == Event.ARRIVAL) {
 				Data d = new Data();
 				d.setArrivalTime(currTime);
 				buffer.enqueue(d);
-				timeForNextArrival = getRandTime(arrivalRate); 
-
-			} else if (e == Event.DEPARTURE) {
 				
+				timeForNextArrival = currTime + getRandTime(arrivalRate);	
+			} 
+			
+			else if (e == Event.DEPARTURE) {
+
 				buffer.first().setDepartureTime(currTime);
 				eventQueue.enqueue(buffer.dequeue());
-				timeForNextDeparture = serviceTime + timeForNextArrival;
+				
+				if (buffer.isEmpty())
+					timeForNextDeparture = timeForNextArrival +serviceTime;			
+				else 
+					timeForNextDeparture = currTime + serviceTime; 
+				
 			}
+			
+			// System.out.println("ARR "+timeForNextArrival);
+			// System.out.println("NDP "+timeForNextDeparture);
+			// System.out.println("BUF "+buffer.isEmpty());
+			/*if ((buffer.isEmpty())){
+				currTime = timeForNextArrival;
+				timeForNextDeparture = timeForNextArrival +serviceTime;
+				e = Event.ARRIVAL;
+			}
+					
+			else*/
+			if ((buffer.isEmpty()) ||(timeForNextArrival < timeForNextDeparture)) {
+				currTime = timeForNextArrival;
+				e = Event.ARRIVAL;
+			} else {
+				currTime = timeForNextDeparture;
+				e = Event.DEPARTURE;
+			}
+			
 		}
-		
+
 		return calcAverageWaitingTime();
 	}
 
