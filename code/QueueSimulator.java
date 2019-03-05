@@ -37,13 +37,12 @@ public class QueueSimulator {
 
 	public double calcAverageWaitingTime() {
 		double sum = 0;
-		double size = eventQueue.size();
+		int size = eventQueue.size();
 		for (int i = 0; i < size; i++) {
 			Data a = eventQueue.dequeue();
-			sum += (a.getDepartureTime() - a.getArrivalTime()); //
+			sum += (a.getDepartureTime() - a.getArrivalTime()); 
 		}
 		return (sum / size);
-
 	}
 
 	public double runSimulation() {
@@ -71,16 +70,7 @@ public class QueueSimulator {
 				
 			}
 			
-			// System.out.println("ARR "+timeForNextArrival);
-			// System.out.println("NDP "+timeForNextDeparture);
-			// System.out.println("BUF "+buffer.isEmpty());
-			/*if ((buffer.isEmpty())){
-				currTime = timeForNextArrival;
-				timeForNextDeparture = timeForNextArrival +serviceTime;
-				e = Event.ARRIVAL;
-			}
-					
-			else*/
+		
 			if ((buffer.isEmpty()) ||(timeForNextArrival < timeForNextDeparture)) {
 				currTime = timeForNextArrival;
 				e = Event.ARRIVAL;

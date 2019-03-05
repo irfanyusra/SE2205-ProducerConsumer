@@ -60,10 +60,10 @@ public class SinglyLinkedList<E> {
 	}
 
 	public void addLast(E element) {
-		if (size == 0) {
+		if (size == 0) 
 			addFirst(element);
 		
-			}
+			
 
 		else {
 			Node<E> n = new Node<E>(element, null);
@@ -82,6 +82,7 @@ public class SinglyLinkedList<E> {
 			head = head.getNext();
 			size--;
 			return n;
+			
 		}
 	}
 }
