@@ -73,7 +73,7 @@ public class Test{
   
   public static void main(String[] args)throws Exception
   {
-    int testPart =2; //Integer.parseInt(args[0]);
+    int testPart =Integer.parseInt(args[0]);
     
     if(testPart==1){
       p1();
